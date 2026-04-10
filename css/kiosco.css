@@ -1,0 +1,286 @@
+/* ── kiosco.css — Electrónica Moderna ───────────────────────── */
+/* Paleta: azul eléctrico #00D4FF sobre fondo oscuro #0D1117    */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: #0D1117;
+  color: #E6EDF3;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Banner promoción (ticker arriba) ── */
+#banner-promo {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  background: linear-gradient(90deg, #FF6B00, #FF8C00);
+  overflow: hidden;
+  transition: height 0.4s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+#banner-promo.visible {
+  height: 36px;
+}
+#banner-texto {
+  white-space: nowrap;
+  animation: ticker 18s linear infinite;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #fff;
+  padding-left: 100%;
+}
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Badges ── */
+#badge-promo, #badge-nuevo {
+  display: none;
+  position: absolute;
+  top: 44px;
+  right: 16px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  z-index: 90;
+}
+#badge-promo {
+  background: #FF6B00;
+  color: #fff;
+}
+#badge-nuevo {
+  background: #00D4FF;
+  color: #0D1117;
+  top: 44px;
+  left: 16px;
+  right: auto;
+}
+#badge-nuevo::before { content: '🆕 NUEVO'; }
+
+/* ── Pantalla principal ── */
+#pantalla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 36px;
+  gap: 0;
+}
+
+/* ── Zona avatar / video / foto ── */
+#zona-avatar {
+  background: #161B22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 12px;
+  position: relative;
+  border-right: 1px solid #21262D;
+}
+
+#header-ref {
+  display: flex;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: #8B949E;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#foto-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#foto {
+  max-width: 100%;
+  max-height: 40vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #21262D;
+}
+
+#specs-wrap, #compat-wrap {
+  width: 100%;
+  background: #0D1117;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid #21262D;
+}
+.specs-titulo {
+  font-size: 0.7rem;
+  color: #00D4FF;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+#specs-contenido, #compat-contenido {
+  font-size: 0.78rem;
+  color: #C9D1D9;
+  line-height: 1.5;
+}
+
+/* ── Zona producto (info) ── */
+#zona-producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 32px;
+  gap: 16px;
+}
+
+#cat-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+#categoria {
+  background: #00D4FF22;
+  color: #00D4FF;
+  border: 1px solid #00D4FF44;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+#subcategoria {
+  color: #8B949E;
+  font-size: 0.75rem;
+}
+
+#nombre {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #E6EDF3;
+  line-height: 1.2;
+}
+
+#descripcion {
+  font-size: 0.9rem;
+  color: #8B949E;
+  line-height: 1.5;
+}
+
+/* ── Precio ── */
+#precio-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#precio-label {
+  font-size: 0.75rem;
+  color: #8B949E;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+#precio-anterior {
+  font-size: 1rem;
+  color: #8B949E;
+  text-decoration: line-through;
+}
+#precio {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #00D4FF;
+  line-height: 1;
+}
+
+/* ── Stock ── */
+#stock-wrap {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ── QR ── */
+#qr-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+#canvas-qr {
+  background: #0D1117;
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid #00D4FF33;
+}
+#canvas-qr img, #canvas-qr canvas {
+  display: block;
+  border-radius: 6px;
+}
+#qr-texto {
+  font-size: 0.72rem;
+  color: #8B949E;
+  letter-spacing: 1px;
+}
+
+/* ── Barra inferior ── */
+#barra-inferior {
+  grid-column: 1 / -1;
+  background: #161B22;
+  border-top: 1px solid #21262D;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 28px;
+  height: 52px;
+}
+#nombre-tienda {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #00D4FF;
+  letter-spacing: 1px;
+}
+#slogan-tienda {
+  font-size: 0.75rem;
+  color: #8B949E;
+}
+#indicador-producto {
+  font-size: 0.85rem;
+  color: #8B949E;
+  background: #0D1117;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid #21262D;
+}
+#num-actual {
+  color: #00D4FF;
+  font-weight: 800;
+}
+
+/* ── Video oculto por defecto ── */
+#video-lsc {
+  display: none;
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ── Barra de progreso (se crea por JS) ── */
+#barra-progreso {
+  position: fixed;
+  bottom: 0; left: 0;
+  height: 4px;
+  background: #00D4FF;
+  z-index: 999;
+}

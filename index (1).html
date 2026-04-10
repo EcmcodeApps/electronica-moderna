@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrónica Moderna — Catálogo</title>
+  <link rel="stylesheet" href="css/kiosco.css">
+</head>
+<body>
+
+  <!-- Banner ticker promoción -->
+  <div id="banner-promo">
+    <span id="banner-texto">⚡ PRODUCTO EN PROMOCIÓN ⚡ PRODUCTO EN PROMOCIÓN ⚡</span>
+  </div>
+
+  <!-- Badges -->
+  <div id="badge-promo" style="display:none">🏷️ OFERTA</div>
+  <div id="badge-nuevo" style="display:none">🆕 NUEVO</div>
+
+  <div id="pantalla">
+
+    <!-- Columna izquierda: foto / video / specs -->
+    <div id="zona-avatar">
+      <div id="header-ref">
+        <span id="txt-referencia"></span>
+        <span id="txt-marca"></span>
+      </div>
+      <div id="foto-wrap">
+        <img id="foto" src="" alt="Producto">
+      </div>
+      <div id="specs-wrap">
+        <div class="specs-titulo">⚡ Especificaciones</div>
+        <div id="specs-contenido"></div>
+      </div>
+      <div id="compat-wrap">
+        <div class="specs-titulo">🔗 Compatibilidad</div>
+        <div id="compat-contenido"></div>
+      </div>
+      <video id="video-lsc" autoplay loop muted playsinline style="display:none"></video>
+    </div>
+
+    <!-- Columna derecha: info del producto -->
+    <div id="zona-producto">
+      <div id="cat-wrap">
+        <span id="categoria"></span>
+        <span id="subcategoria"></span>
+      </div>
+      <div id="nombre">Cargando...</div>
+      <div id="descripcion"></div>
+      <div id="precio-wrap">
+        <span id="precio-label">Precio</span>
+        <span id="precio-anterior" style="display:none"></span>
+        <span id="precio">$0</span>
+      </div>
+      <div id="stock-wrap">
+        <span id="stock-txt"></span>
+      </div>
+      <div id="qr-wrap">
+        <div id="canvas-qr"></div>
+        <div id="qr-texto">📱 Escanea para más info en tu celular</div>
+      </div>
+    </div>
+
+    <!-- Barra inferior -->
+    <div id="barra-inferior">
+      <div id="nombre-tienda"></div>
+      <div id="slogan-tienda"></div>
+      <div id="indicador-producto">
+        <span id="num-actual">1</span> / <span id="num-total">0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CDN CORRECTO para QR — NO usar cdnjs (da 404) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/qr.js"></script>
+  <script src="js/carrusel.js"></script>
+
+  <script>
+    // Inicializar nombre e identidad del almacén
+    document.getElementById('nombre-tienda').textContent = CONFIG.NOMBRE_TIENDA;
+    document.getElementById('slogan-tienda').textContent = CONFIG.SLOGAN;
+
+    // Cargar catálogo e iniciar carrusel
+    cargarCatalogo().then(function(productos) {
+      if (!productos || productos.length === 0) {
+        document.getElementById('nombre').textContent = 'Sin productos activos';
+        return;
+      }
+      iniciarCarrusel(productos);
+    });
+  </script>
+
+</body>
+</html>
