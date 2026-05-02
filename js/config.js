@@ -12,5 +12,5 @@ const CONFIG = {
   // ── Identidad del almacén ─────────────────────────────────
   NOMBRE_TIENDA: 'Electrónica Moderna',
   SLOGAN: 'Tu proveedor de componentes electrónicos',
-  WHATSAPP: '573XXXXXXXXX',
+  WHATSAPP: '573005705205',
 };
