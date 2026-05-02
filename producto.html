@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Electrónica Moderna</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+
+    body {
+      background: #0D1117;
+      color: #E6EDF3;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    #header {
+      background: linear-gradient(90deg, #FF4500, #FF6B00);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 15px rgba(255,107,0,0.5);
+    }
+    #header-nombre { font-size: 1.1rem; font-weight: 900; color: #fff; letter-spacing: 1px; }
+    #header-slogan { font-size: 0.7rem; color: #FFE0B2; }
+
+    /* ── Contenido ── */
+    #contenido {
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ── Foto ── */
+    #foto-wrap {
+      width: 100%;
+      background: #161B22;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #21262D;
+      min-height: 220px;
+    }
+    #foto {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      padding: 12px;
+    }
+
+    /* ── Badge ── */
+    #badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .badge-cat  { background: #00D4FF22; color: #00D4FF; border: 1px solid #00D4FF44; }
+    .badge-promo { background: #FF6B00; color: #fff; }
+    .badge-nuevo { background: #00D4FF; color: #0D1117; }
+
+    /* ── Nombre ── */
+    #nombre {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #E6EDF3;
+      line-height: 1.2;
+    }
+    #referencia {
+      font-size: 0.75rem;
+      color: #8B949E;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── Precio ── */
+    #precio-wrap {
+      background: #161B22;
+      border-radius: 14px;
+      padding: 16px 20px;
+      border: 1px solid #21262D;
+    }
+    #precio-label { font-size: 0.72rem; color: #8B949E; text-transform: uppercase; letter-spacing: 1px; }
+    #precio-anterior { font-size: 0.95rem; color: #8B949E; text-decoration: line-through; margin-top: 2px; }
+    #precio { font-size: 2.2rem; font-weight: 900; color: #00D4FF; line-height: 1; margin-top: 4px; }
+    #stock { font-size: 0.82rem; font-weight: 600; margin-top: 8px; }
+
+    /* ── Descripción ── */
+    #desc-wrap {
+      background: #161B22;
+      border-radius: 14px;
+      padding: 16px 20px;
+      border: 1px solid #21262D;
+    }
+    .seccion-titulo {
+      font-size: 0.72rem;
+      color: #00D4FF;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    #descripcion { font-size: 0.88rem; color: #C9D1D9; line-height: 1.6; }
+
+    /* ── Specs ── */
+    #specs-wrap {
+      background: #161B22;
+      border-radius: 14px;
+      padding: 16px 20px;
+      border: 1px solid #21262D;
+    }
+    #especificaciones { font-size: 0.82rem; color: #C9D1D9; line-height: 1.8; }
+    #especificaciones span {
+      display: block;
+      padding: 3px 0;
+      border-bottom: 1px solid #21262D;
+    }
+    #especificaciones span:last-child { border-bottom: none; }
+
+    /* ── Compatibilidad ── */
+    #compat-wrap {
+      background: #161B22;
+      border-radius: 14px;
+      padding: 16px 20px;
+      border: 1px solid #21262D;
+    }
+    #compatibilidad { font-size: 0.82rem; color: #C9D1D9; line-height: 1.6; }
+
+    /* ── Botón WhatsApp ── */
+    #btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s;
+    }
+    #btn-whatsapp:active { transform: scale(0.97); }
+
+    /* ── Loading ── */
+    #loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      gap: 16px;
+      color: #8B949E;
+    }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid #21262D;
+      border-top-color: #00D4FF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Error ── */
+    #error {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      color: #FF6B6B;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <div>
+      <div id="header-nombre">⚡ Electrónica Moderna</div>
+      <div id="header-slogan">Tu proveedor de componentes electrónicos</div>
+    </div>
+  </div>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <div>Cargando producto...</div>
+  </div>
+
+  <div id="error">
+    <div style="font-size:2rem">😕</div>
+    <div style="font-size:1.1rem;font-weight:700;margin-top:8px">Producto no encontrado</div>
+    <div style="font-size:0.85rem;color:#8B949E;margin-top:6px">Verifica el código QR e intenta de nuevo</div>
+  </div>
+
+  <div id="contenido" style="display:none">
+    <div id="foto-wrap">
+      <img id="foto" src="" alt="Producto">
+    </div>
+    <div id="badges"></div>
+    <div>
+      <div id="nombre"></div>
+      <div id="referencia"></div>
+    </div>
+    <div id="precio-wrap">
+      <div id="precio-label">Precio</div>
+      <div id="precio-anterior" style="display:none"></div>
+      <div id="precio"></div>
+      <div id="stock"></div>
+    </div>
+    <div id="desc-wrap">
+      <div class="seccion-titulo">📋 Descripción</div>
+      <div id="descripcion"></div>
+    </div>
+    <div id="specs-wrap" style="display:none">
+      <div class="seccion-titulo">⚡ Especificaciones</div>
+      <div id="especificaciones"></div>
+    </div>
+    <div id="compat-wrap" style="display:none">
+      <div class="seccion-titulo">🔗 Compatibilidad</div>
+      <div id="compatibilidad"></div>
+    </div>
+    <a id="btn-whatsapp" href="#" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Consultar por WhatsApp
+    </a>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script>
+    // ── Leer ID del producto desde la URL ──────────────────
+    var params  = new URLSearchParams(window.location.search);
+    var idBuscado = params.get('id');
+
+    var elLoading   = document.getElementById('loading');
+    var elError     = document.getElementById('error');
+    var elContenido = document.getElementById('contenido');
+
+    function mostrarError() {
+      elLoading.style.display   = 'none';
+      elError.style.display     = 'block';
+      elContenido.style.display = 'none';
+    }
+
+    function formatearSpecs(texto) {
+      if (!texto) return '';
+      return texto.split('|').map(function(s) {
+        return '<span>' + s.trim() + '</span>';
+      }).join('');
+    }
+
+    async function cargarProducto() {
+      if (!idBuscado) { mostrarError(); return; }
+
+      try {
+        var resp = await fetch(CONFIG.API_URL, { signal: AbortSignal.timeout(10000) });
+        if (!resp.ok) throw new Error('Error ' + resp.status);
+        var datos  = await resp.json();
+        var lista  = datos.productos || datos;
+        var prod   = lista.find(function(p) { return p.id === idBuscado; });
+
+        if (!prod) { mostrarError(); return; }
+
+        // ── Foto ──
+        var foto = document.getElementById('foto');
+        if (prod.url_foto && prod.url_foto.trim() !== '') {
+          var url = prod.url_foto;
+          if (url.includes('drive.google.com')) {
+            var m = url.match(/\/d\/([a-zA-Z0-9_-]{25,})/);
+            if (m) url = 'https://drive.google.com/uc?export=view&id=' + m[1];
+          }
+          foto.src = url;
+        } else {
+          foto.src = 'https://placehold.co/400x300/161B22/00D4FF?text='
+            + encodeURIComponent(prod.nombre || 'Producto');
+        }
+        foto.onerror = function() {
+          foto.src = 'https://placehold.co/400x300/161B22/00D4FF?text=Sin+foto';
+        };
+
+        // ── Badges ──
+        var badges = document.getElementById('badges');
+        var html = '<span class="badge badge-cat">' + (prod.categoria || '') + '</span>';
+        if (prod.subcategoria) html += '<span class="badge badge-cat">' + prod.subcategoria + '</span>';
+        var esPromo = prod.en_promocion === true || String(prod.en_promocion).toUpperCase() === 'TRUE';
+        var esNuevo = prod.es_nuevo    === true || String(prod.es_nuevo).toUpperCase()    === 'TRUE';
+        if (esPromo) html += '<span class="badge badge-promo">🏷️ ' + (prod.texto_promo || 'OFERTA') + '</span>';
+        if (esNuevo) html += '<span class="badge badge-nuevo">🆕 NUEVO</span>';
+        badges.innerHTML = html;
+
+        // ── Textos ──
+        document.getElementById('nombre').textContent      = prod.nombre      || '';
+        document.getElementById('referencia').textContent  = prod.referencia ? 'Ref: ' + prod.referencia + (prod.marca ? ' · ' + prod.marca : '') : '';
+        document.getElementById('descripcion').textContent = prod.descripcion || '';
+
+        // ── Precio ──
+        document.getElementById('precio').textContent = prod.precio_texto
+          || ('$' + (parseInt(prod.precio) || 0).toLocaleString('es-CO'));
+
+        var elPA = document.getElementById('precio-anterior');
+        if (prod.precio_anterior && prod.precio_anterior.trim() !== '') {
+          elPA.textContent    = 'Antes: ' + prod.precio_anterior;
+          elPA.style.display  = 'block';
+        }
+
+        // ── Stock ──
+        var st = parseInt(prod.stock) || 0;
+        var elSt = document.getElementById('stock');
+        elSt.textContent = st > 0 ? '✅ Disponible: ' + st + ' unidades' : '⚠️ Sin stock';
+        elSt.style.color = st > 0 ? '#00D4FF' : '#FF6B6B';
+
+        // ── Specs ──
+        if (prod.especificaciones && prod.especificaciones.trim() !== '') {
+          document.getElementById('especificaciones').innerHTML = formatearSpecs(prod.especificaciones);
+          document.getElementById('specs-wrap').style.display = 'block';
+        }
+
+        // ── Compatibilidad ──
+        if (prod.compatibilidad && prod.compatibilidad.trim() !== '') {
+          document.getElementById('compatibilidad').textContent = prod.compatibilidad;
+          document.getElementById('compat-wrap').style.display = 'block';
+        }
+
+        // ── WhatsApp ──
+        var msgWA = '🏪 *Electrónica Moderna*\n'
+          + 'Hola, estoy interesado en:\n\n'
+          + '📦 *' + (prod.nombre || '') + '*\n'
+          + (prod.referencia ? '🔖 Ref: ' + prod.referencia + '\n' : '')
+          + '💰 Precio: ' + (prod.precio_texto || '') + '\n\n'
+          + '¿Está disponible?';
+        document.getElementById('btn-whatsapp').href =
+          'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent(msgWA);
+
+        // ── Mostrar ──
+        elLoading.style.display   = 'none';
+        elContenido.style.display = 'flex';
+
+      } catch(e) {
+        console.error(e);
+        mostrarError();
+      }
+    }
+
+    cargarProducto();
+  </script>
+</body>
+</html>
