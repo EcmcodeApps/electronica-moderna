@@ -200,11 +200,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-#precio-anterior {
-  font-size: 1rem;
-  color: #8B949E;
-  text-decoration: line-through;
-}
 #precio {
   font-size: 2.8rem;
   font-weight: 900;
@@ -254,8 +249,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 28px;
-  height: 52px;
+  padding: 8px 28px;
+  min-height: 58px;
 }
 #nombre-tienda {
   font-size: 1rem;
@@ -264,7 +259,7 @@ body {
   letter-spacing: 1px;
 }
 #slogan-tienda {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #8B949E;
 }
 #indicador-producto {
@@ -285,20 +280,30 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 1px;
+  gap: 2px;
 }
 #reloj-hora {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 900;
   color: #00D4FF;
   letter-spacing: 2px;
   font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 #reloj-fecha {
   font-size: 0.68rem;
   color: #8B949E;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-transform: capitalize;
+  line-height: 1;
+}
+
+/* ── Precio anterior — rojo tachado ── */
+#precio-anterior {
+  font-size: 1rem;
+  color: #FF4444;
+  text-decoration: line-through;
+  font-weight: 600;
 }
 
 /* ── Video oculto por defecto ── */
