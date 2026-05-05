@@ -9,8 +9,8 @@ function generarQR(productoId) {
   if (!instanciaQR) {
     instanciaQR = new QRCode(canvasQR, {
       text:         urlProducto,
-      width:        180,
-      height:       180,
+      width:        108,
+      height:       108,
       colorDark:    '#00D4FF',
       colorLight:   '#0D1117',
       correctLevel: QRCode.CorrectLevel.M
