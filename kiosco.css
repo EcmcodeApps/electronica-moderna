@@ -227,16 +227,21 @@ body {
 }
 #canvas-qr {
   background: #0D1117;
-  padding: 8px;
+  padding: 6px;
   border-radius: 10px;
   border: 2px solid #00D4FF33;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
 }
 #canvas-qr img, #canvas-qr canvas {
   display: block;
-  border-radius: 6px;
+  border-radius: 4px;
+  width: 108px !important;
+  height: 108px !important;
 }
 #qr-texto {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: #8B949E;
   letter-spacing: 1px;
 }
@@ -273,6 +278,27 @@ body {
 #num-actual {
   color: #00D4FF;
   font-weight: 800;
+}
+
+/* ── Reloj fecha y hora ── */
+#reloj-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+#reloj-hora {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #00D4FF;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+#reloj-fecha {
+  font-size: 0.68rem;
+  color: #8B949E;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 
 /* ── Video oculto por defecto ── */
