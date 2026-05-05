@@ -162,7 +162,11 @@ function mostrarProducto(productos, producto) {
   if (elPrecioAnterior) {
     if (producto.precio_anterior && producto.precio_anterior.trim() !== '') {
       elPrecioAnterior.textContent = 'Antes: ' + producto.precio_anterior;
-      elPrecioAnterior.style.display = 'block';
+      elPrecioAnterior.style.display      = 'block';
+      elPrecioAnterior.style.color        = '#FF4444';
+      elPrecioAnterior.style.textDecoration = 'line-through';
+      elPrecioAnterior.style.fontWeight   = '600';
+      elPrecioAnterior.style.fontSize     = '1rem';
     } else {
       elPrecioAnterior.style.display = 'none';
     }
