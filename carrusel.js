@@ -161,12 +161,19 @@ function mostrarProducto(productos, producto) {
 
   if (elPrecioAnterior) {
     if (producto.precio_anterior && producto.precio_anterior.trim() !== '') {
-      elPrecioAnterior.textContent = 'Antes: ' + producto.precio_anterior;
-      elPrecioAnterior.style.display      = 'block';
-      elPrecioAnterior.style.color        = '#FF4444';
-      elPrecioAnterior.style.textDecoration = 'line-through';
-      elPrecioAnterior.style.fontWeight   = '600';
-      elPrecioAnterior.style.fontSize     = '1rem';
+      elPrecioAnterior.innerHTML =
+        '<span style="font-size:0.7rem;letter-spacing:1px;color:#FF6666;font-weight:700;">ANTES</span>'
+        + '&nbsp;&nbsp;'
+        + '<span style="font-size:1.2rem;font-weight:800;color:#FF4444;text-decoration:line-through;">'
+        + producto.precio_anterior
+        + '</span>';
+      elPrecioAnterior.style.display   = 'flex';
+      elPrecioAnterior.style.alignItems = 'center';
+      elPrecioAnterior.style.gap       = '4px';
+      elPrecioAnterior.style.background = '#FF444415';
+      elPrecioAnterior.style.border    = '1px solid #FF444433';
+      elPrecioAnterior.style.borderRadius = '8px';
+      elPrecioAnterior.style.padding   = '4px 10px';
     } else {
       elPrecioAnterior.style.display = 'none';
     }
