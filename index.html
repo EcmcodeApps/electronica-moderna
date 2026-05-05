@@ -63,10 +63,16 @@
 
     <!-- Barra inferior -->
     <div id="barra-inferior">
-      <div id="nombre-tienda"></div>
-      <div id="slogan-tienda"></div>
+      <div>
+        <div id="nombre-tienda"></div>
+        <div id="slogan-tienda"></div>
+      </div>
       <div id="indicador-producto">
         <span id="num-actual">1</span> / <span id="num-total">0</span>
+      </div>
+      <div id="reloj-wrap">
+        <div id="reloj-hora">00:00:00</div>
+        <div id="reloj-fecha">lunes, 1 enero 2026</div>
       </div>
     </div>
 
@@ -85,6 +91,26 @@
     // Inicializar nombre e identidad del almacén
     document.getElementById('nombre-tienda').textContent = CONFIG.NOMBRE_TIENDA;
     document.getElementById('slogan-tienda').textContent = CONFIG.SLOGAN;
+
+    // ── Reloj en tiempo real ──────────────────────────────
+    var elHora  = document.getElementById('reloj-hora');
+    var elFecha = document.getElementById('reloj-fecha');
+    var DIAS    = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+    var MESES   = ['enero','febrero','marzo','abril','mayo','junio',
+                   'julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+    function actualizarReloj() {
+      var ahora = new Date();
+      var h  = String(ahora.getHours()).padStart(2, '0');
+      var m  = String(ahora.getMinutes()).padStart(2, '0');
+      var s  = String(ahora.getSeconds()).padStart(2, '0');
+      elHora.textContent  = h + ':' + m + ':' + s;
+      elFecha.textContent = DIAS[ahora.getDay()] + ', '
+        + ahora.getDate() + ' ' + MESES[ahora.getMonth()]
+        + ' ' + ahora.getFullYear();
+    }
+    actualizarReloj();
+    setInterval(actualizarReloj, 1000);
 
     // Cargar catálogo e iniciar carrusel
     cargarCatalogo().then(function(productos) {
